@@ -12,6 +12,8 @@ jobs:
       - uses: actions/checkout@v4
       - name: Build client image (prod)
         run: docker build -t ci-client:prod ./client
+      - run: docker run -e CI=true test-client npm test -- --watch=false
+
 
   build-server:
     runs-on: ubuntu-latest
