@@ -10,10 +10,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Build client test image (builder stage)
+        run: docker build --target builder -t ci-client:test ./client
+
+      - name: Run client tests
+        run: docker run -e CI=true ci-client:test npm test -- --watchAll=false
+
       - name: Build client image (prod)
         run: docker build -t ci-client:prod ./client
-      - run: docker run -e CI=true ci-client:prod npm test -- --watch=false
-
 
   build-server:
     runs-on: ubuntu-latest
