@@ -1,0 +1,35 @@
+name: CI (Build production Dockerfiles)
+
+on:
+  push:
+    branches: ["master"]
+  pull_request:
+
+jobs:
+  build-client:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build client image (prod)
+        run: docker build -t ci-client:prod ./client
+
+  build-server:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build server image (prod)
+        run: docker build -t ci-server:prod ./server
+
+  build-worker:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build worker image (prod)
+        run: docker build -t ci-worker:prod ./worker
+
+  build-nginx:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build nginx image (prod)
+        run: docker build -t ci-nginx:prod ./nginx
