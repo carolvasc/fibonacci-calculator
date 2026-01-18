@@ -5,7 +5,7 @@ services:
     dockerfilePath: ./nginx/Dockerfile
     dockerContext: ./nginx
     plan: free
-    autoDeploy: true
+    autoDeploy: false
     envVars:
       - key: API_HOST
         fromService:
@@ -33,14 +33,14 @@ services:
     dockerfilePath: ./client/Dockerfile
     dockerContext: ./client
     plan: free
-    autoDeploy: true
+    autoDeploy: false
   - type: web
     name: api
     env: docker
     dockerfilePath: ./server/Dockerfile
     dockerContext: ./server
     plan: free
-    autoDeploy: true
+    autoDeploy: false
     envVars:
       - key: REDIS_HOST
         fromService:
@@ -78,7 +78,7 @@ services:
     dockerfilePath: ./worker/Dockerfile
     dockerContext: ./worker
     plan: free
-    autoDeploy: true
+    autoDeploy: false
     envVars:
       - key: REDIS_HOST
         fromService:
