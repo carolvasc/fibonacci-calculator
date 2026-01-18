@@ -84,7 +84,7 @@ services:
     ipAllowList: []
 
 databases:
-  - name: postgres
-    databaseName: postgres
-    user: postgres
+  - name: app-postgres
+    databaseName: fib_calc
+    user: fib_user
     plan: free
