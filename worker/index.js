@@ -44,3 +44,16 @@ function fib(index) {
 sub.subscribe("insert", (message) => {
 	redisClient.hSet("values", message, fib(parseInt(message)));
 });
+
+const port = process.env.PORT;
+if (port) {
+	const http = require("http");
+	http
+		.createServer((req, res) => {
+			res.writeHead(200, { "Content-Type": "text/plain" });
+			res.end("ok");
+		})
+		.listen(port, () => {
+			console.log(`Worker listening on port ${port}`);
+		});
+}
