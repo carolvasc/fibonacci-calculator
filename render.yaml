@@ -18,6 +18,9 @@ services:
     dockerContext: ./client
     plan: free
     autoDeploy: false
+    envVars:
+      - key: API_URL
+        value: https://api-7x97.onrender.com
   - type: web
     name: api
     env: docker
