@@ -88,8 +88,8 @@ jobs:
           context: ./server
           push: true
           tags: ${{ secrets.DOCKER_ID }}/multi-server:latest
-          cache-from: type=gha,scope=client
-          cache-to: type=gha,mode=max,scope=client
+          cache-from: type=gha,scope=server
+          cache-to: type=gha,mode=max,scope=server
 
       - name: Build and push worker (uses cache)
         uses: docker/build-push-action@v6
@@ -97,8 +97,8 @@ jobs:
           context: ./worker
           push: true
           tags: ${{ secrets.DOCKER_ID }}/multi-worker:latest
-          cache-from: type=gha,scope=client
-          cache-to: type=gha,mode=max,scope=client
+          cache-from: type=gha,scope=worker
+          cache-to: type=gha,mode=max,scope=worker
 
       - name: Build and push nginx (uses cache)
         uses: docker/build-push-action@v6
@@ -106,5 +106,5 @@ jobs:
           context: ./nginx
           push: true
           tags: ${{ secrets.DOCKER_ID }}/multi-nginx:latest
-          cache-from: type=gha,scope=client
-          cache-to: type=gha,mode=max,scope=client
+          cache-from: type=gha,scope=nginx
+          cache-to: type=gha,mode=max,scope=nginx
