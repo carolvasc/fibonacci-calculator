@@ -3,6 +3,11 @@ name: CI + Deploy (GKE) [dev]
 on:
   push:
     branches: ["dev"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write
 
 jobs:
   ci_and_deploy:
